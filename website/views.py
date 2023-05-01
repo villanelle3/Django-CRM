@@ -15,7 +15,7 @@ def home(request):
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
 			login(request, user)
-			messages.success(request, "You Have Been Logged In!")
+			messages.success(request, "You Have Been Logged In")
 			return redirect('home')
 		else:
 			messages.success(request, "There Was An Error Logging In, Please Try Again...")
@@ -81,7 +81,8 @@ def add_record(request):
 				add_record = form.save()
 				messages.success(request, "Record Added...")
 				return redirect('home')
-		return render(request, 'add_record.html', {'form':form})
+		else:
+			return render(request, 'add_record.html', {'form':form})
 	else:
 		messages.success(request, "You Must Be Logged In...")
 		return redirect('home')
